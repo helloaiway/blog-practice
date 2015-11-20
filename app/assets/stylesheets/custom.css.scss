@@ -1,0 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$red:#ff0000;
+$body-left-padding:100px;
+.page-container{
+	padding:0 $body-left-padding;
+}
+
+footer.foot-content {
+	margin:10px auto;
+	p{
+		text-align:center;
+		&:hover{
+			color:$red;
+		}
+	}
+}
