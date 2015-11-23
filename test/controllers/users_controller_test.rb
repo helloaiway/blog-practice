@@ -46,4 +46,13 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to users_path
   end
+
+  test "should show signup page" do
+    get :signup
+    assert_response :success
+  end
+
+  test "should be valid" do
+    assert @user.valid?
+  end
 end

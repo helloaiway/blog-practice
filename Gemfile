@@ -29,6 +29,8 @@ gem "twitter-bootstrap-rails"
 
 gem 'bootstrap-sass','3.2.0.0'
 
+gem 'bcrypt'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -42,6 +44,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', "~> 2.14" # Needs to be in Dev group for rake tasks
+  gem 'minitest-reporters'
 end
 
 group :development do
