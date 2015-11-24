@@ -12,8 +12,23 @@
             <li><%= link_to "Home", home_path  %></li>
             <li><%= link_to "Help", help_path  %></li>
             <li><%= link_to "Users", users_path  %></li>
-            <li><%= link_to "Contact", "/path3"  %></li>
+            <li><%= link_to "Signup", signup_path  %></li>
+            <li><%= link_to "Signin", login_path  %></li>
           </ul>
+        
+            <% if logged_in? %>
+              <div class="btn-group user-info">
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= current_user.name %> <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "Profile", user_path(current_user) %></li>
+                        <li role="separator" class="divider"></li>
+                        <li><%= link_to "Log out", logout_path, method:"delete" %></li>
+                        
+                      </ul>
+                    </div>
+            <% end %>
         </div>
       </div>
     </div>

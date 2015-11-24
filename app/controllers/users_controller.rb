@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -25,11 +26,6 @@ class UsersController < ApplicationController
 
   end
 
-  # signin
-
-  def signin
-  end
-
   # GET /users/1/edit
   def edit
   end
@@ -41,8 +37,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:sucess] = "Welcome to our blog"
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        log_in @user
+        flash[:success] = "Welcome to our blog"
+        format.html { redirect_to @user }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :signup }
@@ -84,5 +81,13 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    # ensure use has been loged in
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_path
+      end
     end
 end

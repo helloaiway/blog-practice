@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe "UsersSignups" do
-  describe "GET /users_signups" do
+describe "UsersLogins" do
+  describe "GET /users_logins" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get signup_path
+      get signin_path
       response.status.should be(200)
     end
   end
