@@ -11,9 +11,6 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "title should contain home" do
-  	get :home
-  	assert_select "title", "Blog"
-  end
+ 
 
 end

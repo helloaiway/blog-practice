@@ -4,6 +4,8 @@
 </div>
 
 <dl class="dl-horizontal">
+  <dt><%= gravatar_for @user %></dt>
+  <dd></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>

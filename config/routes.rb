@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-  get 'static_pages/home' => 'static_pages#home'
 
-  get 'static_pages/help', to: 'static_pages#help'
+  get 'home'      => 'static_pages#home'
+
+  get 'help', to: 'static_pages#help'
 
   resources :users
+
+  get 'signup'    => 'users#signup'
+  get 'signin'    => 'users#signin'
+
+  get 'login'     => 'sessions#new'
+  post 'login'    => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
 
   root 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
