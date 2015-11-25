@@ -11,7 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123090842) do
+ActiveRecord::Schema.define(version: 20151125035349) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.text     "content",      limit: 65535
+    t.integer  "mircopost_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "comments", ["mircopost_id"], name: "index_comments_on_mircopost_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "mircopost_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "follows", ["mircopost_id"], name: "index_follows_on_mircopost_id", using: :btree
+  add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "user",       limit: 4
+    t.string   "thumb",      limit: 255
+    t.text     "content",    limit: 65535
+    t.integer  "follows",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "mircoposts", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.string   "thumb",      limit: 255
+    t.integer  "followers",  limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "mircoposts", ["user_id"], name: "index_mircoposts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -25,4 +67,9 @@ ActiveRecord::Schema.define(version: 20151123090842) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "comments", "mircoposts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "follows", "mircoposts"
+  add_foreign_key "follows", "users"
+  add_foreign_key "mircoposts", "users"
 end

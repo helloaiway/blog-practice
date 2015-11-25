@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'follow'    => 'follows#follow'
+
+  get 'unfollow'  => 'follows#unfollow'
+
+  post 'comments/new'=> 'comments#new'
+
+  resources :mircoposts
+  resources :messages
   get 'home'      => 'static_pages#home'
 
   get 'help', to: 'static_pages#help'
@@ -7,7 +15,6 @@ Rails.application.routes.draw do
   resources :users
 
   get 'signup'    => 'users#signup'
-  get 'signin'    => 'users#signin'
 
   get 'login'     => 'sessions#new'
   post 'login'    => 'sessions#create'

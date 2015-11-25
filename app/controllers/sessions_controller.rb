@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 	before_action :session_params, only: [:create]
+	skip_before_action :logged_in_user, only: [:new, :signup, :create]
 
 	def new
 	end

@@ -7,7 +7,10 @@ class User < ActiveRecord::Base
 					  format: { with: VALID_EMAIL_REGEX },
 					  uniqueness: { case_sensitive: false }
 	has_secure_password
+
 	validates :password, length: {minimum: 6}
+	validates :password_confirmation, length: {minimum: 6}
+	validates :password, :confirmation => true
 
 	# return the summary of a given string
 	def User.digest(string)

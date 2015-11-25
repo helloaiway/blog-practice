@@ -1,0 +1,53 @@
+<div class="container">
+
+	<div class="mircopost-body">
+	<table>
+		<tr>
+		<td class="thumb"><a href="#" class="thumbnail">
+		<image src='/<%= @mircopost.thumb %>' width="100" height="100">
+		</a></td>
+		<td class="content"><%= @mircopost.content %></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div class="info">
+	<button type="button" class="btn btn-warning btn-sm btn-follow"> <%= pluralize @mircopost.followers, 'Follow' %> </button>
+	<button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseExample"> <%= pluralize @mircopost.comment.count, 'Comments' %> 
+	</button>
+	<span class="user"><%= @mircopost.user.name %></span> <span class="time"><%= @mircopost.created_at %>
+	</span> 
+	</div>
+
+	<div class="collapse box comment-block" id="collapseComment">
+	  <div class="well">
+	    <%= render :partial => "comments/form" %>
+	  </div>
+	</div>
+	<%= render :partial => "comments/list" %>
+
+<%= link_to 'Edit', edit_mircopost_path(@mircopost), :class => 'btn btn-primary' %> 
+<%= link_to 'Back', mircoposts_path, :class => 'btn btn-primary'  %>
+</div>
+<script>
+	$(document).ready(function(){
+		$(".btn-follow").bind("click",function(){
+			$.ajax({
+				url:'/follow.json',
+				data:{m_id:'<%= @mircopost.id %>'},
+				method:'get',
+				type: 'json',
+				success:function(data){
+					//console.log(data);
+					if(data.status == 'success'){
+						//console.log(data.content);
+						$(".btn-follow").html(data.content + ' Follows');
+					}else{
+						alert('Follow failed.');
+					}
+					
+				}
+			});
+		});
+	});
+</script

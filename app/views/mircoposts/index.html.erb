@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mircoposts</h1>
+
+
+<ul>
+<% if @mircoposts.count > 0 %>
+    <% @mircoposts.each do |mircopost| %>
+      <li class="list-item">
+        <div><%= mircopost.content %></div>
+        <div class="info">
+        <%= link_to 'Detail', mircopost, class: "detail" %> 
+        <span class="time"><%= format_time mircopost.created_at %></span>
+        </div>
+      </li>
+  <% end %>
+  
+  <% else %>
+<li>There has not one post yet.</li>
+<% end %>
+</ul>
+
+<br>
+
+<%= link_to 'New', new_mircopost_path, :class => 'btn btn-primary' %>
