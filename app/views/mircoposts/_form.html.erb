@@ -1,0 +1,25 @@
+<%= form_for(@mircopost) do |f| %>
+  <% if @mircopost.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mircopost.errors.count, "error") %> prohibited this mircopost from being saved:</h2>
+
+      <ul>
+      <% @mircopost.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content, :rows => 5 %>
+  </div>
+  <div class="field">
+    <%= f.label :thumb %><br>
+    <%= f.file_field :thumb %>
+  </div>
+  <div class="actions">
+    <%= f.submit nil, :class => 'btn btn-primary'%>
+  </div>
+<% end %>

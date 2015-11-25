@@ -1,0 +1,1 @@
+json.extract! mircopost, :id, :followers

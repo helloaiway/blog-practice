@@ -1,0 +1,7 @@
+<%= form_for(@comment, :url => comments_new_path) do |f| %>
+	    <%= f.hidden_field :mircopost, :value => @mircopost.id %>
+        <div class="form-group">
+          <%= f.text_field :content, :placeholder => "Your opinion.", :class => "form-control" %>
+        </div>
+        <%= f.submit nil, :class => "btn btn-primary btn-sm", :style => "width:120px;" %>
+<% end %>
