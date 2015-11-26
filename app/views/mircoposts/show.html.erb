@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="info">
-	<button type="button" class="btn btn-warning btn-sm btn-follow"> <%= pluralize @mircopost.followers, 'Follow' %> </button>
+	<button type="button" class="btn btn-warning btn-sm btn-follow"> <%= pluralize @mircopost.followers, 'Follower' %> </button>
 	<button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseExample"> <%= pluralize @mircopost.comment.count, 'Comments' %> 
 	</button>
 	<span class="user"><%= @mircopost.user.name %></span> <span class="time"><%= @mircopost.created_at %>
@@ -41,7 +41,7 @@
 					//console.log(data);
 					if(data.status == 'success'){
 						//console.log(data.content);
-						$(".btn-follow").html(data.content + ' Follows');
+						$(".btn-follow").html(data.content + ' Followers');
 					}else{
 						alert('Follow failed.');
 					}
